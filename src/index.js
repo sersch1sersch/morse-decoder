@@ -1,3 +1,4 @@
+
 const MORSE_TABLE = {
     '.-':     'a',
     '-...':   'b',
@@ -36,11 +37,29 @@ const MORSE_TABLE = {
     '----.':  '9',
     '-----':  '0',
 };
-
-function decode(expr) {
-    // write your solution here
-}
-
+  
+            function decode(expr) {
+                let wer = "";
+                for (let i = 0; i < expr.length; i += 10) {
+                  let rew = expr.substr(i, 10);
+                  wer = wer + decoderText(rew);
+                }
+                function decoderText(rew) {
+                    if (rew === "**********") return " ";
+                    let pol = "";
+                    for (let i = 0; i < rew.length; i += 2) {
+                      let lop = rew.substr(i, 2);
+                      if (lop == "10") {
+                          pol = pol + ".";
+                      }
+                      if (lop == "11") {
+                          pol = pol + "-";
+                      }
+                    }
+                  return MORSE_TABLE[pol];
+                }
+                return wer;
+              }
 module.exports = {
     decode
 }
